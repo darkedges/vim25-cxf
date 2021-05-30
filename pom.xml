@@ -27,7 +27,11 @@
 			<artifactId>cxf-rt-databinding-jaxb</artifactId>
 			<version>${cxf.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>it.yobibit</groupId>
+			<artifactId>jaxb-lombok-plugin</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -64,6 +68,11 @@
 									<packagenames>com.vmware.vim25</packagenames>
 									<wsdlLocation>classpath:wsdl/vim25/vimService.wsdl</wsdlLocation>
 									<faultSerialVersionUID>FQCN</faultSerialVersionUID>
+									<extraargs>
+										<extraarg>-xjc-Xlombok</extraarg>
+										<extraarg>-xjc-Xlombok:Data</extraarg>
+										<extraarg>-xjc-Xlombok:Builder</extraarg>
+									</extraargs>
 								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
