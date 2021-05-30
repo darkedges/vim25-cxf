@@ -233,6 +233,38 @@ abstract public class ManagedObject {
 		else
 			return null;
 	}
+	
+	/**
+	 * Get All properties
+	 * @return a Hashtable holding with the property as key, and the value.
+	 * @throws InvalidPropertyFaultMsg
+	 * @throws RuntimeFaultFaultMsg
+	 */
+	public Hashtable<String, Object> getProperties()
+			throws InvalidPropertyFaultMsg, RuntimeFaultFaultMsg {
+		Hashtable<String, Object>[] pht = PropertyCollectorUtil.retrieveProperties(Arrays.asList(this),
+				getMOR().getType(), null, null);
+		if (pht.length != 0)
+			return pht[0];
+		else
+			return null;
+	}
+	/**
+	 * Get All properties
+	 * @param options RetrieveOptions set for the operation
+	 * @return a Hashtable holding with the property as key, and the value.
+	 * @throws InvalidPropertyFaultMsg
+	 * @throws RuntimeFaultFaultMsg
+	 */
+	public Hashtable<String, Object> getProperties(RetrieveOptions options)
+			throws InvalidPropertyFaultMsg, RuntimeFaultFaultMsg {
+		Hashtable<String, Object>[] pht = PropertyCollectorUtil.retrieveProperties(Arrays.asList(this),
+				getMOR().getType(), null, options);
+		if (pht.length != 0)
+			return pht[0];
+		else
+			return null;
+	}
 
 	protected List<ManagedObject> getManagedObjects(String propName, boolean mixedType) {
 		Object object = getCurrentProperty(propName);

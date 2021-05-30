@@ -122,7 +122,11 @@ public class PropertyCollectorUtil {
 			oss.get(i).setObj(mos.get(i).getMOR());
 		}
 
-		PropertySpec pSpec = createPropertySpec(moType, false, propPaths);
+		PropertySpec pSpec; 
+		if (propPaths!=null)
+			pSpec = createPropertySpec(moType, false, propPaths);
+		else 
+			pSpec = createPropertySpec(moType);
 
 		PropertyFilterSpec pfs = new PropertyFilterSpec();
 		pfs.getObjectSet().addAll(oss);
@@ -218,6 +222,13 @@ public class PropertyCollectorUtil {
 								// to true, the pathSet property is ignored.
 		if (pathSet != null && !pathSet.isEmpty())
 			pSpec.getPathSet().addAll(pathSet);
+		return pSpec;
+	}
+	
+	public static PropertySpec createPropertySpec(String type) {
+		PropertySpec pSpec = new PropertySpec();
+		pSpec.setType(type);
+		pSpec.setAll(true);
 		return pSpec;
 	}
 
